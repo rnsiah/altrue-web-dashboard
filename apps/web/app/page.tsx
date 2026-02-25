@@ -36,7 +36,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="font-bold text-xl">Altrue</span>
             </Link>
             <div className="flex items-center gap-6">
@@ -55,15 +55,15 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-rose-50 via-white to-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#D4AF37]/5 via-white to-white">
         <div className="max-w-5xl mx-auto text-center">
-          <Badge className="mb-6 bg-rose-100 text-rose-700 hover:bg-rose-100 px-4 py-1">
+          <Badge className="mb-6 bg-[#D4AF37]/10 text-[#A08224] hover:bg-[#D4AF37]/10 px-4 py-1">
             The Giving Platform for Everyone
           </Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             Make an Impact.
             <br />
-            <span className="text-rose-500">See the Difference.</span>
+            <span className="text-[#D4AF37]">See the Difference.</span>
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
             Whether you're a donor, company, or nonprofit — Altrue connects you to the causes that matter and amplifies every dollar.
@@ -84,7 +84,7 @@ export default function LandingPage() {
             </TabsList>
 
             <TabsContent value="donors" className="text-left">
-              <Card className="border-rose-200 bg-rose-50/50">
+              <Card className="border-rose-200 bg-[#D4AF37]/5/50">
                 <CardContent className="pt-6">
                   <h3 className="text-2xl font-bold mb-3">Make Every Dollar Count</h3>
                   <p className="text-gray-600 mb-6">
@@ -183,8 +183,8 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="border-0 shadow-sm">
               <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center mx-auto mb-4">
-                  <Target className="h-8 w-8 text-rose-500" />
+                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-4">
+                  <Target className="h-8 w-8 text-[#D4AF37]" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">1. Discover</h3>
                 <p className="text-gray-600 text-sm">
@@ -195,8 +195,8 @@ export default function LandingPage() {
 
             <Card className="border-0 shadow-sm">
               <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center mx-auto mb-4">
-                  <Gift className="h-8 w-8 text-rose-500" />
+                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-4">
+                  <Gift className="h-8 w-8 text-[#D4AF37]" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">2. Give</h3>
                 <p className="text-gray-600 text-sm">
@@ -207,8 +207,8 @@ export default function LandingPage() {
 
             <Card className="border-0 shadow-sm">
               <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-8 w-8 text-rose-500" />
+                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-[#D4AF37]" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">3. Track Impact</h3>
                 <p className="text-gray-600 text-sm">
@@ -231,8 +231,8 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="border-0 shadow-sm bg-white">
               <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-rose-100 flex items-center justify-center mb-4">
-                  <Building2 className="h-6 w-6 text-rose-500" />
+                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
+                  <Building2 className="h-6 w-6 text-[#D4AF37]" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Company Matching</h3>
                 <p className="text-gray-600 text-sm">
@@ -516,10 +516,10 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-rose-500">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#D4AF37]">
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Ready to Make a Difference?</h2>
-          <p className="text-rose-100 mb-8">
+          <p className="text-[#D4AF37]/10 mb-8">
             Join thousands of donors, nonprofits, and companies already making an impact on Altrue.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -529,7 +529,7 @@ export default function LandingPage() {
               </Button>
             </Link>
             <Link href="/nonprofit/apply">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-rose-500">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#D4AF37]">
                 Register Nonprofit
               </Button>
             </Link>
@@ -543,7 +543,7 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+                <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
                 <span className="font-bold text-xl">Altrue</span>
               </div>
               <p className="text-gray-600 text-sm">
@@ -553,25 +553,25 @@ export default function LandingPage() {
             <div>
               <h4 className="font-semibold mb-4">For Donors</h4>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link href="/register" className="hover:text-rose-500">Sign Up</Link></li>
-                <li><Link href="#features" className="hover:text-rose-500">How It Works</Link></li>
-                <li><Link href="#pricing" className="hover:text-rose-500">Pricing</Link></li>
+                <li><Link href="/register" className="hover:text-[#D4AF37]">Sign Up</Link></li>
+                <li><Link href="#features" className="hover:text-[#D4AF37]">How It Works</Link></li>
+                <li><Link href="#pricing" className="hover:text-[#D4AF37]">Pricing</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">For Nonprofits</h4>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link href="/nonprofit/apply" className="hover:text-rose-500">Apply</Link></li>
-                <li><Link href="/nonprofit" className="hover:text-rose-500">Learn More</Link></li>
-                <li><Link href="#" className="hover:text-rose-500">Resources</Link></li>
+                <li><Link href="/nonprofit/apply" className="hover:text-[#D4AF37]">Apply</Link></li>
+                <li><Link href="/nonprofit" className="hover:text-[#D4AF37]">Learn More</Link></li>
+                <li><Link href="#" className="hover:text-[#D4AF37]">Resources</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">For Companies</h4>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link href="/company" className="hover:text-rose-500">CSR Solutions</Link></li>
-                <li><Link href="/company/apply" className="hover:text-rose-500">Get Started</Link></li>
-                <li><Link href="#" className="hover:text-rose-500">Pricing</Link></li>
+                <li><Link href="/company" className="hover:text-[#D4AF37]">CSR Solutions</Link></li>
+                <li><Link href="/company/apply" className="hover:text-[#D4AF37]">Get Started</Link></li>
+                <li><Link href="#" className="hover:text-[#D4AF37]">Pricing</Link></li>
               </ul>
             </div>
           </div>
