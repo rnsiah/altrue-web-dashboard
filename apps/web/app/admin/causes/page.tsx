@@ -68,6 +68,16 @@ export default function CausesPage() {
       const causesArray = Array.isArray(causesData) ? causesData : causesData?.results || [];
       const atrocitiesArray = Array.isArray(atrocitiesData) ? atrocitiesData : atrocitiesData?.results || [];
       
+      // Transform causes data to match interface
+      const transformedCauses = causesArray.map((c: any) => ({
+        id: c.id,
+        name: c.name,
+        description: c.blurb || c.information || c.description || '',
+        icon: c.image,
+        nonprofit_count: c.project_count || c.nonprofit_count || 0,
+        is_active: true,
+      }));
+      
       // Transform atrocities data to ensure nonprofits is an array of strings
       const transformedAtrocities = atrocitiesArray.map((a: any) => ({
         ...a,
@@ -77,7 +87,7 @@ export default function CausesPage() {
           : [],
       }));
       
-      setCauses(causesArray);
+      setCauses(transformedCauses);
       setAtrocities(transformedAtrocities);
     } catch (error) {
       setCauses([
