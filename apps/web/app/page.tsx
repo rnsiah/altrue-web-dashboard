@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { 
   Heart, Users, Building2, TrendingUp, CheckCircle, ArrowRight,
   Globe, Handshake, FileText, DollarSign, Gift, Shield,
-  Star, Zap, Award, Target
+  Star, Zap, Award, Target, QrCode, Shirt, Share2
 } from 'lucide-react'
 
 const stats = [
@@ -217,6 +217,91 @@ export default function LandingPage() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* QR Code Merchandise Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Badge className="mb-4 bg-[#D4AF37]/10 text-[#B8962E]">
+                Wear Your Impact
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+                Turn Every T-Shirt Into a Fundraising Campaign
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Altrue apparel features unique QR codes that connect the physical world to your cause. 
+                When someone scans your shirt, they go directly to your nonprofit's donation page.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
+                    <QrCode className="h-5 w-5 text-[#D4AF37]" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Unique QR Codes</h4>
+                    <p className="text-sm text-gray-600">Every shirt has a custom QR code linking directly to your cause or nonprofit profile.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
+                    <Share2 className="h-5 w-5 text-[#D4AF37]" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Walking Billboards</h4>
+                    <p className="text-sm text-gray-600">Wearers become advocates. Every scan is a potential donation and new supporter.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
+                    <DollarSign className="h-5 w-5 text-[#D4AF37]" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Raise Money & Awareness</h4>
+                    <p className="text-sm text-gray-600">Shirt sales fund your mission. QR scans create ongoing donation opportunities.</p>
+                  </div>
+                </div>
+              </div>
+
+              <Link href="/shop">
+                <Button size="lg" className="gap-2 bg-[#D4AF37] hover:bg-[#C4A035] text-white">
+                  Shop Altrue Apparel <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="relative">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 flex items-center justify-center p-8">
+                <div className="relative">
+                  {/* Mock T-Shirt */}
+                  <div className="w-64 h-72 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center p-6">
+                    <div className="w-full h-4 bg-gray-100 rounded mb-4" />
+                    <div className="w-32 h-32 bg-[#D4AF37]/10 rounded-xl flex items-center justify-center mb-4">
+                      <QrCode className="w-20 h-20 text-[#D4AF37]" />
+                    </div>
+                    <p className="text-xs text-gray-400 text-center">Scan to Support</p>
+                    <p className="text-sm font-semibold text-center mt-2">Education Forward</p>
+                  </div>
+                  
+                  {/* Floating Stats */}
+                  <div className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-3">
+                    <p className="text-xs text-gray-500">Scans this week</p>
+                    <p className="text-xl font-bold text-[#D4AF37]">247</p>
+                  </div>
+                  
+                  <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-3">
+                    <p className="text-xs text-gray-500">Raised from scans</p>
+                    <p className="text-xl font-bold text-[#22C55E]">$1,240</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
