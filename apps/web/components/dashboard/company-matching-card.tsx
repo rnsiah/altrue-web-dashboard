@@ -27,18 +27,38 @@ export function CompanyMatchingCard() {
   useEffect(() => {
     async function fetchMatches() {
       try {
-        // Note: This endpoint may need to be created on backend
-        const data = await apiClient("/company-matches/").catch(() => []);
-        setMatches(data.slice(0, 5));
+        // Fetch companies and their campaigns from backend
+        const companiesData = await apiClient("/companies/").catch(() => ({ results: [] }));
+        const companies = companiesData.results || companiesData || [];
+        
+        // Fetch campaigns for active matching data
+        const campaignsData = await apiClient("/campaigns/").catch(() => ({ results: [] }));
+        const campaigns = campaignsData.results || campaignsData || [];
+        
+        // Transform data to match interface
+        const transformedMatches: CompanyMatch[] = campaigns
+          .filter((c: any) => c.status === 'active')
+          .slice(0, 5)
+          .map((campaign: any) => ({
+            id: campaign.id,
+            company_name: campaign.company?.name || 'Unknown Company',
+            company_logo: campaign.company?.logo,
+            nonprofit_name: campaign.eligible_nonprofits?.[0]?.name || 'Multiple Nonprofits',
+            match_level: Math.round(campaign.match_multiplier * 100),
+            total_raised: campaign.amount_matched || 0,
+            funding_limit: campaign.budget_cap || 0,
+          }));
+        
+        setMatches(transformedMatches);
         
         setStats({
-          totalCompanies: data.length,
-          totalMatched: data.reduce((sum: number, m: CompanyMatch) => sum + m.total_raised, 0),
-          activeMatches: data.filter((m: CompanyMatch) => m.total_raised < m.funding_limit).length,
+          totalCompanies: companies.length,
+          totalMatched: campaigns.reduce((sum: number, c: any) => sum + (c.amount_matched || 0), 0),
+          activeMatches: campaigns.filter((c: any) => c.status === 'active').length,
         });
       } catch (error) {
         console.error("Failed to fetch company matches:", error);
-        // Use mock data for now
+        // Use mock data as fallback
         setMatches([
           { id: 1, company_name: "Acme Corp", nonprofit_name: "Red Cross", match_level: 50, total_raised: 15000, funding_limit: 50000 },
           { id: 2, company_name: "Tech Giants", nonprofit_name: "Save the Children", match_level: 100, total_raised: 25000, funding_limit: 25000 },
