@@ -200,7 +200,7 @@ export default function CreateCampaignPage() {
               <div
                 {...getRootProps()}
                 className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-                  isDragActive ? 'border-rose-500 bg-rose-50' : 'border-gray-300'
+                  isDragActive ? 'border-[#D4AF37] bg-[#D4AF37]/5' : 'border-gray-300'
                 }`}
               >
                 <input {...getInputProps()} />
@@ -444,14 +444,14 @@ export default function CreateCampaignPage() {
           }`}>
             {index < steps.length - 1 && (
               <div className={`absolute top-4 left-1/2 w-full h-0.5 ${
-                currentStep > step.id ? 'bg-rose-500' : 'bg-gray-200'
+                currentStep > step.id ? 'bg-[#D4AF37]' : 'bg-gray-200'
               }`} />
             )}
             <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium z-10 ${
               currentStep > step.id 
-                ? 'bg-rose-500 text-white' 
+                ? 'bg-[#D4AF37] text-white' 
                 : currentStep === step.id 
-                  ? 'bg-rose-500 text-white' 
+                  ? 'bg-[#D4AF37] text-white' 
                   : 'bg-gray-200 text-gray-600'
             }`}>
               {currentStep > step.id ? <Check className="h-4 w-4" /> : step.id}

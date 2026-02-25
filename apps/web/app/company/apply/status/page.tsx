@@ -71,7 +71,7 @@ export default function ApplicationStatusPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/company" className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="font-bold text-gray-900">Altrue</span>
             </Link>
             <Link href="/company/apply">
@@ -89,8 +89,8 @@ export default function ApplicationStatusPage() {
 
           <Card>
             <CardHeader>
-              <div className="mx-auto w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mb-4">
-                <FileSearch className="h-6 w-6 text-rose-500" />
+              <div className="mx-auto w-12 h-12 bg-[#D4AF37]/10 rounded-full flex items-center justify-center mb-4">
+                <FileSearch className="h-6 w-6 text-[#D4AF37]" />
               </div>
               <CardTitle className="text-center">Check Application Status</CardTitle>
               <CardDescription className="text-center">
@@ -219,7 +219,7 @@ export default function ApplicationStatusPage() {
 
           <p className="text-center text-sm text-gray-500 mt-6">
             Can't find your application ID?{' '}
-            <a href="mailto:support@altrue.com" className="text-rose-500 hover:underline">
+            <a href="mailto:support@altrue.com" className="text-[#D4AF37] hover:underline">
               Contact support
             </a>
           </p>

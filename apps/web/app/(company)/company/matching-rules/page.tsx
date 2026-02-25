@@ -88,7 +88,7 @@ export default function MatchingRulesPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Settings className="h-5 w-5 text-rose-500" />
+            <Settings className="h-5 w-5 text-[#D4AF37]" />
             Global Match Settings
           </CardTitle>
           <CardDescription>
@@ -184,7 +184,7 @@ export default function MatchingRulesPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Heart className="h-5 w-5 text-rose-500" />
+            <Heart className="h-5 w-5 text-[#D4AF37]" />
             Cause-Specific Rules
           </CardTitle>
           <CardDescription>
@@ -241,7 +241,7 @@ export default function MatchingRulesPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <RefreshCcw className="h-5 w-5 text-rose-500" />
+            <RefreshCcw className="h-5 w-5 text-[#D4AF37]" />
             Auto-Refill Settings
           </CardTitle>
         </CardHeader>

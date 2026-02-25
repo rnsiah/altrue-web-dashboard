@@ -20,7 +20,7 @@ import {
 export default function NonprofitLandingPage() {
   const features = [
     {
-      icon: <Globe className="h-6 w-6 text-rose-500" />,
+      icon: <Globe className="h-6 w-6 text-[#D4AF37]" />,
       title: 'Free Profile Page',
       description: 'Beautiful, shareable profile to showcase your mission and impact.',
     },
@@ -65,7 +65,7 @@ export default function NonprofitLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="font-bold text-xl">Altrue</span>
             </Link>
             <div className="flex items-center gap-4">
@@ -81,14 +81,14 @@ export default function NonprofitLandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-rose-50 to-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#D4AF37]/5 to-white">
         <div className="max-w-4xl mx-auto text-center">
-          <Badge className="mb-4 bg-rose-100 text-rose-700 hover:bg-rose-100">
+          <Badge className="mb-4 bg-[#D4AF37]/10 text-[#A08224] hover:bg-[#D4AF37]/10">
             Now accepting 501(c)(3) organizations
           </Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             Get Funded by{' '}
-            <span className="text-rose-500">People + Companies</span>
+            <span className="text-[#D4AF37]">People + Companies</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Stop chasing grants. Start connecting with thousands of individual donors 
@@ -179,8 +179,8 @@ export default function NonprofitLandingPage() {
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-rose-100 flex items-center justify-center">
-                  <span className="font-bold text-rose-600">{item.step}</span>
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
+                  <span className="font-bold text-[#B8962E]">{item.step}</span>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
@@ -234,10 +234,10 @@ export default function NonprofitLandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-rose-500">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#D4AF37]">
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Fundraising?</h2>
-          <p className="text-rose-100 mb-8">
+          <p className="text-[#D4AF37]/10 mb-8">
             Join hundreds of nonprofits already raising money on Altrue
           </p>
           <Link href="/nonprofit/apply">

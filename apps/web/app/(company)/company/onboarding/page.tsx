@@ -243,7 +243,7 @@ export default function OnboardingPage() {
                     key={tier.id}
                     className={`border rounded-lg p-4 cursor-pointer transition-colors ${
                       formData.tier === tier.id 
-                        ? 'border-rose-500 bg-rose-50' 
+                        ? 'border-[#D4AF37] bg-[#D4AF37]/5' 
                         : 'hover:border-gray-300'
                     }`}
                     onClick={() => updateField('tier', tier.id)}
@@ -253,7 +253,7 @@ export default function OnboardingPage() {
                         <div className="flex items-center gap-2">
                           <h4 className="font-semibold">{tier.name}</h4>
                           {formData.tier === tier.id && (
-                            <CheckCircle2 className="h-4 w-4 text-rose-500" />
+                            <CheckCircle2 className="h-4 w-4 text-[#D4AF37]" />
                           )}
                         </div>
                         <p className="text-sm text-gray-600 mt-1">{tier.description}</p>
@@ -412,7 +412,7 @@ export default function OnboardingPage() {
           <CardTitle className="flex items-center gap-2">
             {(() => {
               const StepIcon = steps[currentStep - 1].icon
-              return <StepIcon className="h-5 w-5 text-rose-500" />
+              return <StepIcon className="h-5 w-5 text-[#D4AF37]" />
             })()}
             {steps[currentStep - 1].name}
           </CardTitle>

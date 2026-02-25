@@ -46,7 +46,7 @@ function SuccessContent() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="flex items-center gap-2">
-          <Loader2 className="h-6 w-6 animate-spin text-rose-500" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#D4AF37]" />
           <span>Loading...</span>
         </div>
       </div>
@@ -60,7 +60,7 @@ function SuccessContent() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/company" className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="font-bold text-gray-900">Altrue</span>
             </Link>
           </div>
@@ -113,7 +113,7 @@ function SuccessContent() {
 
               <div className="space-y-4 text-left">
                 <div className="flex items-start gap-3">
-                  <Mail className="h-5 w-5 text-rose-500 mt-0.5" />
+                  <Mail className="h-5 w-5 text-[#D4AF37] mt-0.5" />
                   <div>
                     <h4 className="font-medium">Email Confirmation Sent</h4>
                     <p className="text-sm text-gray-600">
@@ -122,7 +122,7 @@ function SuccessContent() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Clock className="h-5 w-5 text-rose-500 mt-0.5" />
+                  <Clock className="h-5 w-5 text-[#D4AF37] mt-0.5" />
                   <div>
                     <h4 className="font-medium">Review Process</h4>
                     <p className="text-sm text-gray-600">
@@ -131,7 +131,7 @@ function SuccessContent() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <FileSearch className="h-5 w-5 text-rose-500 mt-0.5" />
+                  <FileSearch className="h-5 w-5 text-[#D4AF37] mt-0.5" />
                   <div>
                     <h4 className="font-medium">Check Your Status</h4>
                     <p className="text-sm text-gray-600">
@@ -158,7 +158,7 @@ function SuccessContent() {
 
               <p className="text-sm text-gray-500">
                 Questions? Contact us at{' '}
-                <a href="mailto:support@altrue.com" className="text-rose-500 hover:underline">
+                <a href="mailto:support@altrue.com" className="text-[#D4AF37] hover:underline">
                   support@altrue.com
                 </a>
               </p>
@@ -175,7 +175,7 @@ export default function ApplicationSuccessPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="flex items-center gap-2">
-          <Loader2 className="h-6 w-6 animate-spin text-rose-500" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#D4AF37]" />
           <span>Loading...</span>
         </div>
       </div>

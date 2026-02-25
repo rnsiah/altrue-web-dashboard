@@ -40,7 +40,7 @@ export default function ApplicationSuccessPage() {
 
             <div className="space-y-4 text-left">
               <div className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-rose-500 mt-0.5" />
+                <Mail className="h-5 w-5 text-[#D4AF37] mt-0.5" />
                 <div>
                   <h4 className="font-medium">Email Confirmation Sent</h4>
                   <p className="text-sm text-gray-600">
@@ -49,7 +49,7 @@ export default function ApplicationSuccessPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-rose-500 mt-0.5" />
+                <Clock className="h-5 w-5 text-[#D4AF37] mt-0.5" />
                 <div>
                   <h4 className="font-medium">Review Process</h4>
                   <p className="text-sm text-gray-600">
@@ -58,7 +58,7 @@ export default function ApplicationSuccessPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <FileSearch className="h-5 w-5 text-rose-500 mt-0.5" />
+                <FileSearch className="h-5 w-5 text-[#D4AF37] mt-0.5" />
                 <div>
                   <h4 className="font-medium">Next Steps</h4>
                   <p className="text-sm text-gray-600">
@@ -85,7 +85,7 @@ export default function ApplicationSuccessPage() {
 
             <p className="text-sm text-gray-500">
               Questions? Contact us at{' '}
-              <a href="mailto:support@altrue.com" className="text-rose-500 hover:underline">
+              <a href="mailto:support@altrue.com" className="text-[#D4AF37] hover:underline">
                 support@altrue.com
               </a>
             </p>

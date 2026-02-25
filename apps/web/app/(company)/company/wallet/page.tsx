@@ -100,7 +100,7 @@ export default function WalletPage() {
       case 'deposit':
         return <ArrowDownLeft className="h-4 w-4 text-green-500" />
       case 'match':
-        return <ArrowUpRight className="h-4 w-4 text-rose-500" />
+        return <ArrowUpRight className="h-4 w-4 text-[#D4AF37]" />
       case 'refund':
         return <ArrowDownLeft className="h-4 w-4 text-blue-500" />
       default:
@@ -125,7 +125,7 @@ export default function WalletPage() {
       {/* Loading State */}
       {loading && (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-rose-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-[#D4AF37]" />
           <span className="ml-2 text-gray-600">Loading wallet...</span>
         </div>
       )}
@@ -173,8 +173,8 @@ export default function WalletPage() {
                 <p className="text-sm text-gray-600 mb-1">Current Balance</p>
                 <p className="text-4xl font-bold">{formatCurrency(wallet.balance)}</p>
               </div>
-              <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center">
-                <Wallet className="h-8 w-8 text-rose-500" />
+              <div className="w-16 h-16 bg-[#D4AF37]/10 rounded-full flex items-center justify-center">
+                <Wallet className="h-8 w-8 text-[#D4AF37]" />
               </div>
             </div>
 
@@ -274,7 +274,7 @@ export default function WalletPage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className={`font-semibold ${transaction.amount > 0 ? 'text-green-600' : 'text-rose-600'}`}>
+                      <p className={`font-semibold ${transaction.amount > 0 ? 'text-green-600' : 'text-[#B8962E]'}`}>
                         {transaction.amount > 0 ? '+' : ''}{formatCurrency(transaction.amount)}
                       </p>
                       <p className="text-xs text-gray-500">{formatCurrency(transaction.balanceAfter)}</p>
@@ -311,14 +311,14 @@ export default function WalletPage() {
                   <div key={transaction.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                        <ArrowUpRight className="h-4 w-4 text-rose-500" />
+                        <ArrowUpRight className="h-4 w-4 text-[#D4AF37]" />
                       </div>
                       <div>
                         <p className="font-medium text-sm">{transaction.description}</p>
                         <p className="text-xs text-gray-500">{formatDate(transaction.createdAt)}</p>
                       </div>
                     </div>
-                    <p className="font-semibold text-rose-600">
+                    <p className="font-semibold text-[#B8962E]">
                       {formatCurrency(transaction.amount)}
                     </p>
                   </div>

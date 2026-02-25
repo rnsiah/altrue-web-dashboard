@@ -296,7 +296,7 @@ export default function CompanyApplicationPage() {
               <div
                 {...getRootProps()}
                 className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
-                  isDragActive ? 'border-rose-500 bg-rose-50' : 'border-gray-300 hover:border-gray-400'
+                  isDragActive ? 'border-[#D4AF37] bg-[#D4AF37]/5' : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
                 <input {...getInputProps()} />
@@ -379,7 +379,7 @@ export default function CompanyApplicationPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/company" className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="font-bold text-gray-900">Altrue</span>
             </Link>
             <Link href="/company/apply/status">
@@ -403,7 +403,7 @@ export default function CompanyApplicationPage() {
                     currentStep > step.id 
                       ? 'bg-green-500 text-white' 
                       : currentStep === step.id 
-                        ? 'bg-rose-500 text-white' 
+                        ? 'bg-[#D4AF37] text-white' 
                         : 'bg-gray-200 text-gray-600'
                   }`}>
                     {currentStep > step.id ? (
@@ -430,7 +430,7 @@ export default function CompanyApplicationPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Building2 className="h-5 w-5 text-rose-500" />
+                <Building2 className="h-5 w-5 text-[#D4AF37]" />
                 {steps[currentStep - 1].name}
               </CardTitle>
               <CardDescription>
@@ -486,9 +486,9 @@ export default function CompanyApplicationPage() {
 
           <p className="text-center text-sm text-gray-500 mt-6">
             By submitting, you agree to our{' '}
-            <Link href="/terms" className="text-rose-500 hover:underline">Terms of Service</Link>
+            <Link href="/terms" className="text-[#D4AF37] hover:underline">Terms of Service</Link>
             {' '}and{' '}
-            <Link href="/privacy" className="text-rose-500 hover:underline">Privacy Policy</Link>
+            <Link href="/privacy" className="text-[#D4AF37] hover:underline">Privacy Policy</Link>
           </p>
         </div>
       </main>

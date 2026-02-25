@@ -15,7 +15,7 @@ export default function CompanyLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-2">
-              <Heart className="h-8 w-8 text-rose-500 fill-rose-500" />
+              <Heart className="h-8 w-8 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="text-xl font-bold text-gray-900">Altrue</span>
             </div>
             <div className="flex items-center gap-4">
@@ -39,7 +39,7 @@ export default function CompanyLandingPage() {
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Amplify Your{' '}
-              <span className="text-rose-500">Impact</span>
+              <span className="text-[#D4AF37]">Impact</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
               Join leading companies using Altrue to multiply employee donations, 
@@ -64,19 +64,19 @@ export default function CompanyLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-rose-500">$2.5M+</div>
+              <div className="text-3xl font-bold text-[#D4AF37]">$2.5M+</div>
               <div className="text-sm text-gray-600">Matched in 2024</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-rose-500">500+</div>
+              <div className="text-3xl font-bold text-[#D4AF37]">500+</div>
               <div className="text-sm text-gray-600">Companies</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-rose-500">10K+</div>
+              <div className="text-3xl font-bold text-[#D4AF37]">10K+</div>
               <div className="text-sm text-gray-600">Active Donors</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-rose-500">1,200+</div>
+              <div className="text-3xl font-bold text-[#D4AF37]">1,200+</div>
               <div className="text-sm text-gray-600">Nonprofits</div>
             </div>
           </div>
@@ -93,8 +93,8 @@ export default function CompanyLandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card>
               <CardContent className="pt-6">
-                <div className="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center mb-4">
-                  <Building2 className="h-6 w-6 text-rose-500" />
+                <div className="w-12 h-12 bg-[#D4AF37]/10 rounded-lg flex items-center justify-center mb-4">
+                  <Building2 className="h-6 w-6 text-[#D4AF37]" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">1. Apply</h3>
                 <p className="text-gray-600">
@@ -104,8 +104,8 @@ export default function CompanyLandingPage() {
             </Card>
             <Card>
               <CardContent className="pt-6">
-                <div className="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center mb-4">
-                  <Sparkles className="h-6 w-6 text-rose-500" />
+                <div className="w-12 h-12 bg-[#D4AF37]/10 rounded-lg flex items-center justify-center mb-4">
+                  <Sparkles className="h-6 w-6 text-[#D4AF37]" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">2. Set Up Matching</h3>
                 <p className="text-gray-600">
@@ -115,8 +115,8 @@ export default function CompanyLandingPage() {
             </Card>
             <Card>
               <CardContent className="pt-6">
-                <div className="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="h-6 w-6 text-rose-500" />
+                <div className="w-12 h-12 bg-[#D4AF37]/10 rounded-lg flex items-center justify-center mb-4">
+                  <TrendingUp className="h-6 w-6 text-[#D4AF37]" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">3. Amplify Impact</h3>
                 <p className="text-gray-600">
@@ -247,12 +247,12 @@ export default function CompanyLandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-rose-500">
+      <section className="py-20 bg-[#D4AF37]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
             Ready to Amplify Your Impact?
           </h2>
-          <p className="text-rose-100 text-lg mb-8">
+          <p className="text-[#D4AF37]/10 text-lg mb-8">
             Join hundreds of companies making a difference. Applications reviewed within 24-48 hours.
           </p>
           <Link href="/company/apply">
@@ -268,7 +268,7 @@ export default function CompanyLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="text-white font-semibold">Altrue</span>
             </div>
             <div className="text-sm">

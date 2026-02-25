@@ -131,7 +131,7 @@ export default function DashboardPage() {
   const getActivityIcon = (type: string) => {
     switch (type) {
       case 'donation_matched':
-        return <Heart className="h-4 w-4 text-rose-500" />
+        return <Heart className="h-4 w-4 text-[#D4AF37]" />
       case 'reward_claimed':
         return <Gift className="h-4 w-4 text-purple-500" />
       case 'campaign_milestone':
@@ -166,7 +166,7 @@ export default function DashboardPage() {
       {/* Loading State */}
       {loading && (
         <div className="flex items-center justify-center py-12">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-rose-500" />
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D4AF37]" />
           <span className="ml-2 text-gray-600">Loading dashboard...</span>
         </div>
       )}
@@ -208,8 +208,8 @@ export default function DashboardPage() {
                 <p className="text-sm text-gray-600">Matched This Month</p>
                 <p className="text-2xl font-bold">{formatCurrency(stats.matchedThisMonth)}</p>
               </div>
-              <div className="w-10 h-10 bg-rose-100 rounded-lg flex items-center justify-center">
-                <Heart className="h-5 w-5 text-rose-500" />
+              <div className="w-10 h-10 bg-[#D4AF37]/10 rounded-lg flex items-center justify-center">
+                <Heart className="h-5 w-5 text-[#D4AF37]" />
               </div>
             </div>
             <Progress value={matchedPercent} className="mt-3 h-1" />
@@ -414,7 +414,7 @@ export default function DashboardPage() {
                     <div className="flex-1 min-w-0">
                       <p className="text-sm">{activity.description}</p>
                       {activity.amount && (
-                        <p className="text-sm font-medium text-rose-600">
+                        <p className="text-sm font-medium text-[#B8962E]">
                           +{formatCurrency(activity.amount)}
                         </p>
                       )}

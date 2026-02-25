@@ -34,13 +34,13 @@ export default function NonprofitDashboardLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/nonprofit/dashboard" className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="font-bold text-xl">Altrue Nonprofit</span>
             </Link>
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-600">Education Forward</span>
-              <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center">
-                <span className="text-rose-600 font-bold text-sm">EF</span>
+              <div className="w-8 h-8 bg-[#D4AF37]/10 rounded-full flex items-center justify-center">
+                <span className="text-[#B8962E] font-bold text-sm">EF</span>
               </div>
             </div>
           </div>

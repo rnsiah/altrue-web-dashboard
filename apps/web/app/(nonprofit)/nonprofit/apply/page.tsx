@@ -225,7 +225,7 @@ export default function NonprofitApplyPage() {
                     onClick={() => toggleCause(cause)}
                     className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
                       formData.causes.includes(cause)
-                        ? 'bg-rose-100 border-rose-300 text-rose-700'
+                        ? 'bg-[#D4AF37]/10 border-rose-300 text-[#A08224]'
                         : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
                     }`}
                   >
@@ -409,7 +409,7 @@ export default function NonprofitApplyPage() {
               <div key={step.id} className="flex items-center">
                 <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
                   currentStep >= step.id
-                    ? 'bg-rose-500 border-rose-500 text-white'
+                    ? 'bg-[#D4AF37] border-[#D4AF37] text-white'
                     : 'bg-white border-gray-300 text-gray-500'
                 }`}>
                   {currentStep > step.id ? (
@@ -420,7 +420,7 @@ export default function NonprofitApplyPage() {
                 </div>
                 {index < steps.length - 1 && (
                   <div className={`w-12 sm:w-20 h-0.5 mx-2 ${
-                    currentStep > step.id ? 'bg-rose-500' : 'bg-gray-300'
+                    currentStep > step.id ? 'bg-[#D4AF37]' : 'bg-gray-300'
                   }`} />
                 )}
               </div>
@@ -428,7 +428,7 @@ export default function NonprofitApplyPage() {
           </div>
           <div className="flex justify-between text-sm">
             {steps.map((step) => (
-              <span key={step.id} className={currentStep >= step.id ? 'text-rose-600 font-medium' : 'text-gray-500'}>
+              <span key={step.id} className={currentStep >= step.id ? 'text-[#B8962E] font-medium' : 'text-gray-500'}>
                 {step.name}
               </span>
             ))}
@@ -469,7 +469,7 @@ export default function NonprofitApplyPage() {
                 <Button 
                   onClick={handleSubmit} 
                   disabled={isSubmitting}
-                  className="bg-rose-500 hover:bg-rose-600"
+                  className="bg-[#D4AF37] hover:bg-[#B8962E]"
                 >
                   {isSubmitting ? (
                     <>

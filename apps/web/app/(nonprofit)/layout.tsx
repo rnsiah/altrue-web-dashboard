@@ -13,12 +13,12 @@ export default function NonprofitLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/nonprofit" className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
               <span className="font-bold text-xl">Altrue for Nonprofits</span>
             </Link>
             <div className="text-sm text-gray-600">
               Questions? Contact{' '}
-              <a href="mailto:support@altrue.com" className="text-rose-500">
+              <a href="mailto:support@altrue.com" className="text-[#D4AF37]">
                 support@altrue.com
               </a>
             </div>

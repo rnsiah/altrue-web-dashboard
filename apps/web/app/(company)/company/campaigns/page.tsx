@@ -213,7 +213,7 @@ export default function CampaignsPage() {
       {/* Loading State */}
       {loading && (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-rose-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-[#D4AF37]" />
           <span className="ml-2 text-gray-600">Loading campaigns...</span>
         </div>
       )}
