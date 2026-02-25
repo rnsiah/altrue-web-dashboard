@@ -55,18 +55,19 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#D4AF37]/5 via-white to-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#D4AF37]/10 via-white to-white">
         <div className="max-w-5xl mx-auto text-center">
-          <Badge className="mb-6 bg-[#D4AF37]/10 text-[#A08224] hover:bg-[#D4AF37]/10 px-4 py-1">
+          <Badge className="mb-6 bg-[#D4AF37]/10 text-[#B8962E] hover:bg-[#D4AF37]/10 px-4 py-1">
             The Giving Platform for Everyone
           </Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            Make an Impact.
+            Your Donation,
             <br />
-            <span className="text-[#D4AF37]">See the Difference.</span>
+            <span className="text-[#D4AF37]">Multiplied.</span>
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            Whether you're a donor, company, or nonprofit — Altrue connects you to the causes that matter and amplifies every dollar.
+            Join the only platform where companies match your gifts 2x, 5x, even 10x. 
+            See exactly where every dollar goes and the lives you change.
           </p>
           
           {/* User Type Tabs */}
@@ -84,22 +85,22 @@ export default function LandingPage() {
             </TabsList>
 
             <TabsContent value="donors" className="text-left">
-              <Card className="border-rose-200 bg-[#D4AF37]/5/50">
+              <Card className="border-[#D4AF37]/20 bg-[#D4AF37]/5">
                 <CardContent className="pt-6">
-                  <h3 className="text-2xl font-bold mb-3">Make Every Dollar Count</h3>
+                  <h3 className="text-2xl font-bold mb-3">Turn $10 Into $100</h3>
                   <p className="text-gray-600 mb-6">
-                    Join thousands of donors turning small gifts into massive impact. 
-                    Company matching means your $10 becomes $20, $50, or even $100.
+                    Stop donating alone. Our company partners match your gifts automatically—
+                    multiplying your impact without spending another penny.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Link href="/register">
-                      <Button size="lg" className="w-full sm:w-auto gap-2">
-                        Start Giving Today <ArrowRight className="h-4 w-4" />
+                      <Button size="lg" className="w-full sm:w-auto gap-2 bg-[#D4AF37] hover:bg-[#C4A035] text-white">
+                        Start Giving Free <ArrowRight className="h-4 w-4" />
                       </Button>
                     </Link>
                     <Link href="#how-it-works">
                       <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                        See How It Works
+                        See How Matching Works
                       </Button>
                     </Link>
                   </div>
@@ -108,22 +109,22 @@ export default function LandingPage() {
             </TabsContent>
 
             <TabsContent value="nonprofits" className="text-left">
-              <Card className="border-blue-200 bg-blue-50/50">
+              <Card className="border-[#2563EB]/20 bg-[#2563EB]/5">
                 <CardContent className="pt-6">
-                  <h3 className="text-2xl font-bold mb-3">Get Funded by People + Companies</h3>
+                  <h3 className="text-2xl font-bold mb-3">Stop Chasing Grants. Start Receiving.</h3>
                   <p className="text-gray-600 mb-6">
-                    Stop chasing grants. Connect with thousands of donors and corporate 
-                    matching programs that want to fund your mission. Free to join.
+                    Connect with 15,000+ donors and 50+ company matching programs. 
+                    We handle the paperwork—you focus on your mission. Free forever.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Link href="/nonprofit/apply">
-                      <Button size="lg" className="w-full sm:w-auto gap-2 bg-blue-600 hover:bg-blue-700">
-                        Create Free Profile <ArrowRight className="h-4 w-4" />
+                      <Button size="lg" className="w-full sm:w-auto gap-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white">
+                        Get Verified Free <ArrowRight className="h-4 w-4" />
                       </Button>
                     </Link>
                     <Link href="/nonprofit">
                       <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                        Learn More
+                        See Success Stories
                       </Button>
                     </Link>
                   </div>
@@ -132,16 +133,16 @@ export default function LandingPage() {
             </TabsContent>
 
             <TabsContent value="companies" className="text-left">
-              <Card className="border-amber-200 bg-amber-50/50">
+              <Card className="border-[#D97706]/20 bg-[#D97706]/5">
                 <CardContent className="pt-6">
-                  <h3 className="text-2xl font-bold mb-3">Launch CSR in 10 Minutes</h3>
+                  <h3 className="text-2xl font-bold mb-3">Launch CSR in 10 Minutes—Not 10 Months</h3>
                   <p className="text-gray-600 mb-6">
-                    The easiest way to launch, manage, and measure your corporate social 
-                    responsibility program. Turn employee giving into a competitive advantage.
+                    The only platform that automates employee matching, tracks ESG metrics, 
+                    and proves ROI. 73% of employees prefer companies that give back.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Link href="/company/apply">
-                      <Button size="lg" className="w-full sm:w-auto gap-2 bg-amber-600 hover:bg-amber-700">
+                      <Button size="lg" className="w-full sm:w-auto gap-2 bg-[#D97706] hover:bg-[#B45309] text-white">
                         Start Free Trial <ArrowRight className="h-4 w-4" />
                       </Button>
                     </Link>
@@ -177,7 +178,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">How Altrue Works</h2>
-            <p className="text-gray-600">Three simple steps to amplify your impact</p>
+            <p className="text-gray-600">Three simple steps to multiply your impact</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -188,7 +189,7 @@ export default function LandingPage() {
                 </div>
                 <h3 className="font-bold text-lg mb-2">1. Discover</h3>
                 <p className="text-gray-600 text-sm">
-                  Browse causes that matter to you — education, climate, health, poverty, and more.
+                  Browse causes that matter—education, climate, health, poverty—all verified 501(c)(3).
                 </p>
               </CardContent>
             </Card>
@@ -200,7 +201,7 @@ export default function LandingPage() {
                 </div>
                 <h3 className="font-bold text-lg mb-2">2. Give</h3>
                 <p className="text-gray-600 text-sm">
-                  Donate any amount. Companies automatically match, amplifying your impact 2x, 5x, or more.
+                  Donate any amount. Companies automatically match, amplifying your impact instantly.
                 </p>
               </CardContent>
             </Card>
@@ -212,7 +213,7 @@ export default function LandingPage() {
                 </div>
                 <h3 className="font-bold text-lg mb-2">3. Track Impact</h3>
                 <p className="text-gray-600 text-sm">
-                  Watch your giving history come alive with real-time stats, stories, and lives changed.
+                  Watch your giving come alive with real stories, photos, and lives changed.
                 </p>
               </CardContent>
             </Card>
@@ -224,7 +225,7 @@ export default function LandingPage() {
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Powerful Features for Everyone</h2>
+            <h2 className="text-3xl font-bold mb-4">Why Altrue Works</h2>
             <p className="text-gray-600">Tools designed to maximize your impact</p>
           </div>
 
@@ -234,69 +235,69 @@ export default function LandingPage() {
                 <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
                   <Building2 className="h-6 w-6 text-[#D4AF37]" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Company Matching</h3>
+                <h3 className="font-semibold text-lg mb-2">Automatic Company Matching</h3>
                 <p className="text-gray-600 text-sm">
-                  Your donations automatically matched by corporate partners. $10 becomes $100.
+                  Your $10 becomes $100 when companies match. No extra work—just amplified impact.
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-sm bg-white">
               <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
-                  <Globe className="h-6 w-6 text-blue-500" />
+                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
+                  <Shield className="h-6 w-6 text-[#D4AF37]" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Verified Nonprofits</h3>
+                <h3 className="font-semibold text-lg mb-2">100% Verified Nonprofits</h3>
                 <p className="text-gray-600 text-sm">
-                  Every nonprofit is 501(c)(3) verified. Your money goes to legitimate causes.
+                  Every organization is 501(c)(3) verified. Your money goes exactly where you send it.
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-sm bg-white">
               <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mb-4">
-                  <FileText className="h-6 w-6 text-green-500" />
+                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
+                  <FileText className="h-6 w-6 text-[#D4AF37]" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Impact Reports</h3>
+                <h3 className="font-semibold text-lg mb-2">See Your Impact</h3>
                 <p className="text-gray-600 text-sm">
-                  See exactly where your money goes. Real stories, real impact, full transparency.
+                  Real photos, real stories, real results. Know exactly how you changed lives.
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-sm bg-white">
               <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
-                  <Award className="h-6 w-6 text-purple-500" />
+                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
+                  <Award className="h-6 w-6 text-[#D4AF37]" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Earn Rewards</h3>
                 <p className="text-gray-600 text-sm">
-                  Unlock badges, streaks, and perks for consistent giving. Gamify your generosity.
+                  Unlock badges, streaks, and perks. Giving feels good—we make it feel great.
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-sm bg-white">
               <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-amber-100 flex items-center justify-center mb-4">
-                  <Handshake className="h-6 w-6 text-amber-500" />
+                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
+                  <Handshake className="h-6 w-6 text-[#D4AF37]" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Team Challenges</h3>
+                <h3 className="font-semibold text-lg mb-2">Give Together</h3>
                 <p className="text-gray-600 text-sm">
-                  Join donation challenges with friends, family, or coworkers. Multiply your impact.
+                  Join team challenges with friends, family, or coworkers. Multiply your collective impact.
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-sm bg-white">
               <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-teal-100 flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-teal-500" />
+                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
+                  <Zap className="h-6 w-6 text-[#D4AF37]" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Instant Tax Receipts</h3>
                 <p className="text-gray-600 text-sm">
-                  Automatic tax-compliant receipts for every donation. No paperwork, no hassle.
+                  Automatic tax-compliant receipts. No paperwork, no waiting, no hassle.
                 </p>
               </CardContent>
             </Card>
@@ -308,17 +309,17 @@ export default function LandingPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Loved by Donors, Nonprofits & Companies</h2>
+            <h2 className="text-3xl font-bold mb-4">Trusted by Donors, Nonprofits & Companies</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="border-0 shadow-sm">
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />)}
+                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />)}
                 </div>
                 <p className="text-gray-600 mb-4 italic">
-                  "I never thought my $20 could matter. Through Altrue, it's turned into $200 with company matches. I've funded 3 scholarships this year alone."
+                  "I never thought my $20 could matter. Through Altrue matching, I've funded 3 scholarships this year. It actually feels like I'm making a difference."
                 </p>
                 <div>
                   <p className="font-semibold">Sarah M.</p>
@@ -330,10 +331,10 @@ export default function LandingPage() {
             <Card className="border-0 shadow-sm">
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />)}
+                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />)}
                 </div>
                 <p className="text-gray-600 mb-4 italic">
-                  "We went from $50K annual donations to $340K in our first year on Altrue. The company matching feature alone doubled our revenue."
+                  "We went from $50K to $340K in our first year. Altrue's company matching partnerships did what 10 grant applications couldn't."
                 </p>
                 <div>
                   <p className="font-semibold">James Chen</p>
@@ -345,10 +346,10 @@ export default function LandingPage() {
             <Card className="border-0 shadow-sm">
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />)}
+                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />)}
                 </div>
                 <p className="text-gray-600 mb-4 italic">
-                  "Our employee engagement increased 40% after launching our CSR program on Altrue. The automated matching saves us countless hours."
+                  "Employee engagement increased 40% after launching our CSR program. The automated matching saves us 20 hours a month."
                 </p>
                 <div>
                   <p className="font-semibold">Lisa Rodriguez</p>
@@ -366,7 +367,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap justify-center gap-8">
             {trustBadges.map((badge) => (
               <div key={badge.text} className="flex items-center gap-2 text-gray-600">
-                <badge.icon className="h-5 w-5 text-green-500" />
+                <badge.icon className="h-5 w-5 text-[#22C55E]" />
                 <span className="font-medium">{badge.text}</span>
               </div>
             ))}
@@ -384,7 +385,7 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Donors */}
-            <Card className="border-2 border-rose-200">
+            <Card className="border-2 border-[#D4AF37]/20">
               <CardHeader>
                 <CardTitle>For Donors</CardTitle>
               </CardHeader>
@@ -393,19 +394,19 @@ export default function LandingPage() {
                 <p className="text-gray-600 text-sm mb-4">Always free to give</p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Free account
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Company matching
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Impact tracking
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Tax receipts
                   </li>
                 </ul>
@@ -413,28 +414,28 @@ export default function LandingPage() {
             </Card>
 
             {/* Nonprofits */}
-            <Card className="border-2 border-blue-200">
+            <Card className="border-2 border-[#2563EB]/20">
               <CardHeader>
                 <CardTitle>For Nonprofits</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold mb-2">Free</div>
-                <p className="text-gray-600 text-sm mb-4">3% transaction fee</p>
+                <p className="text-gray-600 text-sm mb-4">3% transaction fee only</p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Free profile page
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Unlimited projects
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Company partnerships
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Impact reporting
                   </li>
                 </ul>
@@ -442,28 +443,28 @@ export default function LandingPage() {
             </Card>
 
             {/* Companies */}
-            <Card className="border-2 border-amber-200">
+            <Card className="border-2 border-[#D97706]/20">
               <CardHeader>
                 <CardTitle>For Companies</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold mb-2">$0-999<span className="text-lg font-normal">/mo</span></div>
-                <p className="text-gray-600 text-sm mb-4">Free to start</p>
+                <p className="text-gray-600 text-sm mb-4">Free tier available</p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Free tier available
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     Unlimited matching
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     ESG reporting
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
                     API access (Pro+)
                   </li>
                 </ul>
@@ -487,23 +488,23 @@ export default function LandingPage() {
             {[
               {
                 q: "Is my donation tax-deductible?",
-                a: "Yes! All nonprofits on Altrue are 501(c)(3) verified. You'll receive automatic tax receipts for every donation."
+                a: "Yes! Every nonprofit on Altrue is 501(c)(3) verified. You receive instant tax receipts for every donation."
               },
               {
                 q: "How does company matching work?",
-                a: "Companies set a budget and match ratio (e.g., 1:1, 2:1). When an employee donates, Altrue automatically processes the match from the company's wallet."
+                a: "Companies set a match ratio (e.g., 1:1, 2:1). When you donate $10, Altrue automatically processes an additional $10-$100 from the company's fund. You don't do anything extra."
               },
               {
-                q: "What percentage goes to the nonprofit?",
-                a: "For individual donors: 97% goes to the nonprofit (3% fee). For companies on Pro/Enterprise plans, fees are even lower (0.5-1%)."
+                q: "What percentage reaches the nonprofit?",
+                a: "97% for individual donors (3% fee). Companies on Pro/Enterprise plans pay even lower fees (0.5-1%), meaning more impact per dollar."
               },
               {
                 q: "Is there a mobile app?",
-                a: "Yes! Available on iOS and Android. Donate, track impact, and manage campaigns on the go."
+                a: "Yes! Available on iOS and Android. Donate, track impact, and manage your giving on the go."
               },
               {
                 q: "How long does nonprofit verification take?",
-                a: "Our team reviews applications within 24-48 hours to verify 501(c)(3) status."
+                a: "Our team reviews applications within 24-48 hours to verify 501(c)(3) status. Once approved, you're live and ready to receive donations."
               }
             ].map((faq, i) => (
               <div key={i} className="bg-white rounded-lg p-6 shadow-sm">
@@ -518,9 +519,9 @@ export default function LandingPage() {
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#D4AF37]">
         <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Ready to Make a Difference?</h2>
-          <p className="text-[#D4AF37]/10 mb-8">
-            Join thousands of donors, nonprofits, and companies already making an impact on Altrue.
+          <h2 className="text-3xl font-bold mb-4">Ready to Multiply Your Impact?</h2>
+          <p className="text-white/90 mb-8">
+            Join thousands of donors, nonprofits, and companies already making a difference on Altrue.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
@@ -547,7 +548,7 @@ export default function LandingPage() {
                 <span className="font-bold text-xl">Altrue</span>
               </div>
               <p className="text-gray-600 text-sm">
-                The giving platform that connects donors, companies, and nonprofits to maximize impact.
+                The giving platform that multiplies your impact through company matching.
               </p>
             </div>
             <div>
