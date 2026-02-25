@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,48 +9,75 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Progress } from '@/components/ui/progress'
+import { toast } from '@/components/ui/toaster'
 import { 
   Wallet, Plus, ArrowDownLeft, ArrowUpRight, RefreshCcw,
-  CreditCard, AlertTriangle
+  CreditCard, AlertTriangle, Loader2
 } from 'lucide-react'
 import { 
   Dialog, DialogContent, DialogHeader, DialogTitle, 
   DialogDescription, DialogFooter 
 } from '@/components/ui/dialog'
-import type { Transaction, PaymentMethod } from '@/types/company'
+import { companiesApi } from '@/lib/api/company'
+import type { Transaction, PaymentMethod, Wallet as WalletType } from '@/types/company'
 
-// Mock data
-const mockWallet = {
-  balance: 2500,
+// Mock data fallback
+const mockWallet: WalletType = {
+  companyId: '2',
+  balance: 5000,
   monthlyBudget: 10000,
-  matchedThisMonth: 5230,
-  remainingBudget: 4770,
+  matchedThisMonth: 3500,
+  remainingBudget: 6500,
   autoRefill: {
-    enabled: true,
+    enabled: false,
     threshold: 1000,
     amount: 2000,
   },
 }
 
-const mockTransactions: Transaction[] = [
-  { id: '1', companyId: 'comp_123', type: 'match', amount: -50, description: 'Matched donation to Education Nonprofit', balanceAfter: 2500, createdAt: '2024-02-24T10:30:00Z' },
-  { id: '2', companyId: 'comp_123', type: 'match', amount: -25, description: 'Matched donation to Climate Fund', balanceAfter: 2550, createdAt: '2024-02-24T09:15:00Z' },
-  { id: '3', companyId: 'comp_123', type: 'deposit', amount: 1000, description: 'Wallet funding', balanceAfter: 2575, createdAt: '2024-02-22T14:20:00Z' },
-  { id: '4', companyId: 'comp_123', type: 'match', amount: -100, description: 'Campaign match - Education Month', balanceAfter: 1575, createdAt: '2024-02-20T16:45:00Z' },
-  { id: '5', companyId: 'comp_123', type: 'deposit', amount: 2000, description: 'Auto-refill', balanceAfter: 1675, createdAt: '2024-02-18T08:00:00Z' },
-]
-
-const mockPaymentMethods: PaymentMethod[] = [
-  { id: 'pm_1', companyId: 'comp_123', type: 'card', last4: '4242', brand: 'visa', expMonth: 12, expYear: 2025, isDefault: true },
-  { id: 'pm_2', companyId: 'comp_123', type: 'card', last4: '8888', brand: 'mastercard', expMonth: 6, expYear: 2026, isDefault: false },
-]
+const mockTransactions: Transaction[] = []
+const mockPaymentMethods: PaymentMethod[] = []
 
 export default function WalletPage() {
-  const [wallet] = useState(mockWallet)
-  const [transactions] = useState<Transaction[]>(mockTransactions)
-  const [paymentMethods] = useState<PaymentMethod[]>(mockPaymentMethods)
+  const [wallet, setWallet] = useState<WalletType>(mockWallet)
+  const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions)
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>(mockPaymentMethods)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [addFundsOpen, setAddFundsOpen] = useState(false)
   const [amount, setAmount] = useState('')
+
+  useEffect(() => {
+    loadWalletData()
+  }, [])
+
+  const loadWalletData = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      const companyId = '2' // Using Agora Coffee for testing
+      
+      const [walletData, transactionsData, paymentMethodsData] = await Promise.all([
+        companiesApi.getWallet(companyId).catch(() => null),
+        companiesApi.getTransactions(companyId, { limit: 20 }).catch(() => []),
+        companiesApi.getPaymentMethods(companyId).catch(() => []),
+      ])
+      
+      if (walletData) setWallet(walletData)
+      if (transactionsData) setTransactions(transactionsData)
+      if (paymentMethodsData) setPaymentMethods(paymentMethodsData)
+      
+    } catch (err) {
+      console.error('Failed to load wallet:', err)
+      setError('Failed to load wallet data.')
+      toast.error('Failed to load wallet', {
+        description: 'Could not fetch latest data.',
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -94,6 +121,33 @@ export default function WalletPage() {
           <Plus className="h-4 w-4" /> Add Funds
         </Button>
       </div>
+
+      {/* Loading State */}
+      {loading && (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-rose-500" />
+          <span className="ml-2 text-gray-600">Loading wallet...</span>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-2 text-red-600 mb-2">
+              <AlertTriangle className="h-5 w-5" />
+              <span className="font-medium">Error</span>
+            </div>
+            <p className="text-red-600 mb-3">{error}</p>
+            <Button variant="outline" size="sm" onClick={loadWalletData}>
+              Retry
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      {!loading && !error && (
+      <>
 
       {/* Balance Alert */}
       {wallet.balance < 500 && (
@@ -350,6 +404,8 @@ export default function WalletPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      </>
+      )}
     </div>
   )
 }

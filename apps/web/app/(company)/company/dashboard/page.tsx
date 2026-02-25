@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { toast } from '@/components/ui/toaster'
 import { 
   DollarSign, Users, Megaphone, Wallet, ArrowRight, 
   Plus, TrendingUp, AlertTriangle, Heart, Gift, FileText
@@ -75,6 +76,7 @@ export default function DashboardPage() {
   const [campaigns, setCampaigns] = useState<Campaign[]>(mockCampaigns)
   const [activities, setActivities] = useState<ActivityItem[]>(mockActivity)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [walletBalance, setWalletBalance] = useState(2500)
 
   useEffect(() => {
@@ -83,13 +85,29 @@ export default function DashboardPage() {
 
   const loadDashboard = async () => {
     try {
-      // In production, fetch from API
-      // const statsData = await companiesApi.getDashboard('comp_123')
-      // const walletData = await companiesApi.getWallet('comp_123')
-      // setStats(statsData)
-      // setWalletBalance(walletData.balance)
+      setLoading(true)
+      setError(null)
+      
+      // TODO: Get actual company ID from user session/context
+      // For now using placeholder - in production this comes from auth
+      const companyId = '1' // Replace with actual company ID from session
+      
+      const [statsData, campaignsData, walletData] = await Promise.all([
+        companiesApi.getDashboard(companyId).catch(() => null),
+        campaignsApi.list(companyId).catch(() => []),
+        companiesApi.getWallet(companyId).catch(() => null),
+      ])
+      
+      if (statsData) setStats(statsData)
+      if (campaignsData) setCampaigns(campaignsData)
+      if (walletData) setWalletBalance(walletData.balance)
+      
     } catch (error) {
       console.error('Failed to load dashboard:', error)
+      setError('Failed to load dashboard data. Using cached data.')
+      toast.error('Error loading dashboard', {
+        description: 'Could not fetch latest data. Showing cached information.',
+      })
     } finally {
       setLoading(false)
     }
@@ -144,6 +162,28 @@ export default function DashboardPage() {
           </Link>
         </div>
       </div>
+
+      {/* Loading State */}
+      {loading && (
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-rose-500" />
+          <span className="ml-2 text-gray-600">Loading dashboard...</span>
+        </div>
+      )}
+
+      {/* Error Alert */}
+      {error && (
+        <Alert variant="destructive">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription className="flex items-center justify-between">
+            <span>{error}</span>
+            <Button variant="outline" size="sm" onClick={loadDashboard}>
+              Retry
+            </Button>
+          </AlertDescription>
+        </Alert>
+      )}
 
       {/* Low Balance Alert */}
       {walletBalance < 500 && (

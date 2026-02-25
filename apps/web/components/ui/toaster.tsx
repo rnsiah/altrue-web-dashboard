@@ -1,9 +1,12 @@
 "use client";
 
-import { Toaster as SonnerToaster, toast } from "sonner";
+import { Toaster as SonnerToaster, toast as sonnerToast } from "sonner";
 import { useEffect } from "react";
 import { useDonationNotifications } from "@/components/websocket-provider";
 import { Heart, User, DollarSign } from "lucide-react";
+
+// Re-export toast for use in components
+export const toast = sonnerToast;
 
 export function Toaster() {
   return (
@@ -77,9 +80,6 @@ export function UserActivityNotifications() {
 
   return null;
 }
-
-// Export toast helper
-export { toast };
 
 // Predefined toast templates
 export const showSuccessToast = (title: string, description?: string) => {

@@ -1,3 +1,4 @@
+import { getSession } from 'next-auth/react';
 import { 
   Company, CompanyApplication, Campaign, MatchRule, GlobalMatchSettings,
   Reward, Wallet, Transaction, Invoice, PaymentMethod, DashboardStats,
@@ -7,10 +8,20 @@ import {
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
+  // Get auth token from session
+  const session = await getSession();
+  const token = session?.user?.accessToken;
+  
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+  
+  if (token) {
+    headers['Authorization'] = `Token ${token}`;
+  }
+  
   const response = await fetch(`${API_BASE}${endpoint}`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     ...options,
   });
   

@@ -1,15 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Progress } from '@/components/ui/progress'
+import { toast } from '@/components/ui/toaster'
 import { 
   Megaphone, Plus, Calendar, DollarSign, Users, 
-  Play, Pause, Edit, Eye, MoreHorizontal, Clock
+  Play, Pause, Edit, Eye, MoreHorizontal, Clock, Loader2, AlertTriangle
 } from 'lucide-react'
 import {
   DropdownMenu,
@@ -17,86 +18,43 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { campaignsApi } from '@/lib/api/company'
 import type { Campaign } from '@/types/company'
 
-// Mock data
-const mockCampaigns: Campaign[] = [
-  {
-    id: 'camp_1',
-    companyId: 'comp_123',
-    name: 'Education Month',
-    description: 'Supporting local schools and educational programs',
-    startDate: '2024-02-01',
-    endDate: '2024-02-29',
-    matchMultiplier: 2,
-    budgetCap: 10000,
-    matchedAmount: 5230,
-    escrowAmount: 3000,
-    escrowFunded: true,
-    status: 'active',
-    donorCount: 89,
-    totalDonations: 124,
-    createdAt: '2024-01-15',
-    eligibleCauses: ['education', 'youth'],
-  },
-  {
-    id: 'camp_2',
-    companyId: 'comp_123',
-    name: 'Climate Action Week',
-    description: 'Environmental conservation initiatives',
-    startDate: '2024-03-01',
-    endDate: '2024-03-07',
-    matchMultiplier: 1.5,
-    budgetCap: 5000,
-    matchedAmount: 0,
-    escrowAmount: 1500,
-    escrowFunded: true,
-    status: 'pending_funding',
-    donorCount: 0,
-    totalDonations: 0,
-    createdAt: '2024-01-20',
-    eligibleCauses: ['climate', 'environment'],
-  },
-  {
-    id: 'camp_3',
-    companyId: 'comp_123',
-    name: 'Holiday Giving',
-    description: 'End of year charitable drive',
-    startDate: '2024-12-01',
-    endDate: '2024-12-31',
-    matchMultiplier: 1,
-    budgetCap: 15000,
-    matchedAmount: 0,
-    escrowAmount: 0,
-    escrowFunded: false,
-    status: 'draft',
-    donorCount: 0,
-    totalDonations: 0,
-    createdAt: '2024-01-25',
-    eligibleCauses: ['all'],
-  },
-  {
-    id: 'camp_4',
-    companyId: 'comp_123',
-    name: 'Healthcare Heroes',
-    description: 'Supporting medical workers',
-    startDate: '2023-11-01',
-    endDate: '2023-11-30',
-    matchMultiplier: 2,
-    budgetCap: 8000,
-    matchedAmount: 8000,
-    escrowAmount: 2400,
-    escrowFunded: true,
-    status: 'completed',
-    donorCount: 156,
-    totalDonations: 234,
-    createdAt: '2023-10-15',
-    eligibleCauses: ['healthcare', 'community'],
-  },
-]
+// Mock data fallback
+const mockCampaigns: Campaign[] = []
 
 export default function CampaignsPage() {
-  const [campaigns] = useState<Campaign[]>(mockCampaigns)
+  const [campaigns, setCampaigns] = useState<Campaign[]>(mockCampaigns)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    loadCampaigns()
+  }, [])
+
+  const loadCampaigns = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      // TODO: Get actual company ID from session
+      const companyId = '2' // Using Agora Coffee (ID: 2) for testing
+      
+      const data = await campaignsApi.list(companyId)
+      if (data && data.length > 0) {
+        setCampaigns(data)
+      }
+    } catch (err) {
+      console.error('Failed to load campaigns:', err)
+      setError('Failed to load campaigns. Using demo data.')
+      toast.error('Failed to load campaigns', {
+        description: 'Could not fetch latest data.',
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -252,6 +210,31 @@ export default function CampaignsPage() {
         </Link>
       </div>
 
+      {/* Loading State */}
+      {loading && (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-rose-500" />
+          <span className="ml-2 text-gray-600">Loading campaigns...</span>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-2 text-red-600 mb-2">
+              <AlertTriangle className="h-5 w-5" />
+              <span className="font-medium">Error</span>
+            </div>
+            <p className="text-red-600 mb-3">{error}</p>
+            <Button variant="outline" size="sm" onClick={loadCampaigns}>
+              Retry
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      {!loading && !error && (
       <Tabs defaultValue="active" className="w-full">
         <TabsList className="grid w-full grid-cols-5 lg:w-auto lg:inline-flex">
           <TabsTrigger value="active">Active</TabsTrigger>
@@ -285,6 +268,7 @@ export default function CampaignsPage() {
           </TabsContent>
         ))}
       </Tabs>
+      )}
     </div>
   )
 }
