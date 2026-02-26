@@ -1,671 +1,199 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Heart, Users, Building2, TrendingUp, CheckCircle, ArrowRight,
-  Globe, Handshake, FileText, DollarSign, Gift, Shield,
-  Star, Zap, Award, Target, QrCode, Shirt, Share2
-} from 'lucide-react'
+import { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { HeroSection } from './components/landing/HeroSection';
+import { FloatingNav } from './components/landing/FloatingNav';
+import { CustomCursor } from './components/landing/CustomCursor';
+import { MultiplierCalculator } from './components/landing/MultiplierCalculator';
+import { ThreeWorlds } from './components/landing/ThreeWorlds';
+import { EcosystemConstellation } from './components/landing/EcosystemConstellation';
+import { LiveImpactMap } from './components/landing/LiveImpactMap';
+import { ImpactStories } from './components/landing/ImpactStories';
+import { QuizDemo } from './components/landing/QuizDemo';
+import { RewardsShowcase } from './components/landing/RewardsShowcase';
+import { QRCodeMagic } from './components/landing/QRCodeMagic';
+import { TrustSignals } from './components/landing/TrustSignals';
+import { FinalCTA } from './components/landing/FinalCTA';
 
-const stats = [
-  { value: '$2.4M+', label: 'Total Raised' },
-  { value: '15,000+', label: 'Active Donors' },
-  { value: '200+', label: 'Verified Nonprofits' },
-  { value: '50+', label: 'Company Partners' },
-]
+// Smooth scroll polyfill for older browsers
+function useSmoothScroll() {
+  useEffect(() => {
+    // Handle anchor link clicks
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a[href^="#"]');
+      
+      if (anchor) {
+        const href = anchor.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        }
+      }
+    };
 
-const trustBadges = [
-  { icon: Shield, text: '501(c)(3) Verified' },
-  { icon: Shield, text: '256-bit SSL' },
-  { icon: DollarSign, text: 'Transparent Fees' },
-  { icon: CheckCircle, text: 'PCI DSS Compliant' },
-]
+    document.addEventListener('click', handleAnchorClick);
+    return () => document.removeEventListener('click', handleAnchorClick);
+  }, []);
+}
+
+// Page load animation wrapper
+function SectionWrapper({ 
+  children, 
+  className = '' 
+}: { 
+  children: React.ReactNode; 
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.6 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function LandingPage() {
-  const [activeTab, setActiveTab] = useState('donors')
+  useSmoothScroll();
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <nav className="border-b sticky top-0 bg-white z-50">
+    <div className="relative min-h-screen bg-[#0A0A0A] overflow-x-hidden">
+      {/* Custom Cursor - Desktop Only */}
+      <CustomCursor />
+      
+      {/* Floating Navigation */}
+      <FloatingNav />
+
+      {/* Main Content */}
+      <main>
+        {/* Hero Section */}
+        <HeroSection />
+
+        {/* Multiplier Calculator - How It Works */}
+        <SectionWrapper>
+          <MultiplierCalculator />
+        </SectionWrapper>
+
+        {/* Three Worlds - User Types */}
+        <SectionWrapper>
+          <ThreeWorlds />
+        </SectionWrapper>
+
+        {/* Ecosystem Constellation */}
+        <SectionWrapper>
+          <EcosystemConstellation />
+        </SectionWrapper>
+
+        {/* Live Impact Map */}
+        <SectionWrapper>
+          <LiveImpactMap />
+        </SectionWrapper>
+
+        {/* Impact Stories */}
+        <SectionWrapper>
+          <ImpactStories />
+        </SectionWrapper>
+
+        {/* Quiz Demo */}
+        <SectionWrapper>
+          <QuizDemo />
+        </SectionWrapper>
+
+        {/* Rewards Showcase */}
+        <SectionWrapper>
+          <RewardsShowcase />
+        </SectionWrapper>
+
+        {/* QR Code Magic */}
+        <SectionWrapper>
+          <QRCodeMagic />
+        </SectionWrapper>
+
+        {/* Trust Signals */}
+        <SectionWrapper>
+          <TrustSignals />
+        </SectionWrapper>
+
+        {/* Final CTA */}
+        <FinalCTA />
+      </main>
+
+      {/* Simple Footer */}
+      <footer className="bg-[#0A0A0A] border-t border-white/5 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
-              <span className="font-bold text-xl">Altrue</span>
-            </Link>
-            <div className="flex items-center gap-6">
-              <Link href="#features" className="text-gray-600 hover:text-gray-900 hidden sm:block">
-                How It Works
-              </Link>
-              <Link href="#pricing" className="text-gray-600 hover:text-gray-900 hidden sm:block">
-                Pricing
-              </Link>
-              <Link href="/login">
-                <Button variant="outline">Sign In</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#D4AF37]/10 via-white to-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <Badge className="mb-6 bg-[#D4AF37]/10 text-[#B8962E] hover:bg-[#D4AF37]/10 px-4 py-1">
-            The Giving Platform for Everyone
-          </Badge>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            Your Donation,
-            <br />
-            <span className="text-[#D4AF37]">Multiplied.</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            Join the only platform where companies match your gifts 2x, 5x, even 10x. 
-            See exactly where every dollar goes and the lives you change.
-          </p>
-          
-          {/* User Type Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-3xl mx-auto">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="donors" className="gap-2">
-                <Users className="h-4 w-4" /> I'm a Donor
-              </TabsTrigger>
-              <TabsTrigger value="nonprofits" className="gap-2">
-                <Heart className="h-4 w-4" /> I'm a Nonprofit
-              </TabsTrigger>
-              <TabsTrigger value="companies" className="gap-2">
-                <Building2 className="h-4 w-4" /> I'm a Company
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="donors" className="text-left">
-              <Card className="border-[#D4AF37]/20 bg-[#D4AF37]/5">
-                <CardContent className="pt-6">
-                  <h3 className="text-2xl font-bold mb-3">Turn $10 Into $100</h3>
-                  <p className="text-gray-600 mb-6">
-                    Stop donating alone. Our company partners match your gifts automatically—
-                    multiplying your impact without spending another penny.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Link href="/register">
-                      <Button size="lg" className="w-full sm:w-auto gap-2 bg-[#D4AF37] hover:bg-[#C4A035] text-white">
-                        Start Giving Free <ArrowRight className="h-4 w-4" />
-                      </Button>
-                    </Link>
-                    <Link href="#how-it-works">
-                      <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                        See How Matching Works
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="nonprofits" className="text-left">
-              <Card className="border-[#2563EB]/20 bg-[#2563EB]/5">
-                <CardContent className="pt-6">
-                  <h3 className="text-2xl font-bold mb-3">Stop Chasing Grants. Start Receiving.</h3>
-                  <p className="text-gray-600 mb-6">
-                    Connect with 15,000+ donors and 50+ company matching programs. 
-                    We handle the paperwork—you focus on your mission. Free forever.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Link href="/nonprofit/apply">
-                      <Button size="lg" className="w-full sm:w-auto gap-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white">
-                        Get Verified Free <ArrowRight className="h-4 w-4" />
-                      </Button>
-                    </Link>
-                    <Link href="/nonprofit">
-                      <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                        See Success Stories
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="companies" className="text-left">
-              <Card className="border-[#D97706]/20 bg-[#D97706]/5">
-                <CardContent className="pt-6">
-                  <h3 className="text-2xl font-bold mb-3">Launch CSR in 10 Minutes—Not 10 Months</h3>
-                  <p className="text-gray-600 mb-6">
-                    The only platform that automates employee matching, tracks ESG metrics, 
-                    and proves ROI. 73% of employees prefer companies that give back.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Link href="/company/apply">
-                      <Button size="lg" className="w-full sm:w-auto gap-2 bg-[#D97706] hover:bg-[#B45309] text-white">
-                        Start Free Trial <ArrowRight className="h-4 w-4" />
-                      </Button>
-                    </Link>
-                    <Link href="/company">
-                      <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                        View Pricing
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 border-y bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-3xl sm:text-4xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">How Altrue Works</h2>
-            <p className="text-gray-600">Three simple steps to multiply your impact</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-sm">
-              <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-4">
-                  <Target className="h-8 w-8 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-bold text-lg mb-2">1. Discover</h3>
-                <p className="text-gray-600 text-sm">
-                  Browse causes that matter—education, climate, health, poverty—all verified 501(c)(3).
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm">
-              <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-4">
-                  <Gift className="h-8 w-8 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-bold text-lg mb-2">2. Give</h3>
-                <p className="text-gray-600 text-sm">
-                  Donate any amount. Companies automatically match, amplifying your impact instantly.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm">
-              <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-8 w-8 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-bold text-lg mb-2">3. Track Impact</h3>
-                <p className="text-gray-600 text-sm">
-                  Watch your giving come alive with real stories, photos, and lives changed.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* QR Code Merchandise Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4 bg-[#D4AF37]/10 text-[#B8962E]">
-                Wear Your Impact
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Turn Every T-Shirt Into a Fundraising Campaign
-              </h2>
-              <p className="text-lg text-gray-600 mb-6">
-                Altrue apparel features unique QR codes that connect the physical world to your cause. 
-                When someone scans your shirt, they go directly to your nonprofit's donation page.
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
-                    <QrCode className="h-5 w-5 text-[#D4AF37]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Unique QR Codes</h4>
-                    <p className="text-sm text-gray-600">Every shirt has a custom QR code linking directly to your cause or nonprofit profile.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
-                    <Share2 className="h-5 w-5 text-[#D4AF37]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Walking Billboards</h4>
-                    <p className="text-sm text-gray-600">Wearers become advocates. Every scan is a potential donation and new supporter.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
-                    <DollarSign className="h-5 w-5 text-[#D4AF37]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Raise Money & Awareness</h4>
-                    <p className="text-sm text-gray-600">Shirt sales fund your mission. QR scans create ongoing donation opportunities.</p>
-                  </div>
-                </div>
-              </div>
-
-              <Link href="/shop">
-                <Button size="lg" className="gap-2 bg-[#D4AF37] hover:bg-[#C4A035] text-white">
-                  Shop Altrue Apparel <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-            
-            <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 flex items-center justify-center p-8">
-                <div className="relative">
-                  {/* Mock T-Shirt */}
-                  <div className="w-64 h-72 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center p-6">
-                    <div className="w-full h-4 bg-gray-100 rounded mb-4" />
-                    <div className="w-32 h-32 bg-[#D4AF37]/10 rounded-xl flex items-center justify-center mb-4">
-                      <QrCode className="w-20 h-20 text-[#D4AF37]" />
-                    </div>
-                    <p className="text-xs text-gray-400 text-center">Scan to Support</p>
-                    <p className="text-sm font-semibold text-center mt-2">Education Forward</p>
-                  </div>
-                  
-                  {/* Floating Stats */}
-                  <div className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-3">
-                    <p className="text-xs text-gray-500">Scans this week</p>
-                    <p className="text-xl font-bold text-[#D4AF37]">247</p>
-                  </div>
-                  
-                  <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-3">
-                    <p className="text-xs text-gray-500">Raised from scans</p>
-                    <p className="text-xl font-bold text-[#22C55E]">$1,240</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Why Altrue Works</h2>
-            <p className="text-gray-600">Tools designed to maximize your impact</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-sm bg-white">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
-                  <Building2 className="h-6 w-6 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">Automatic Company Matching</h3>
-                <p className="text-gray-600 text-sm">
-                  Your $10 becomes $100 when companies match. No extra work—just amplified impact.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm bg-white">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">100% Verified Nonprofits</h3>
-                <p className="text-gray-600 text-sm">
-                  Every organization is 501(c)(3) verified. Your money goes exactly where you send it.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm bg-white">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
-                  <FileText className="h-6 w-6 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">See Your Impact</h3>
-                <p className="text-gray-600 text-sm">
-                  Real photos, real stories, real results. Know exactly how you changed lives.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm bg-white">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
-                  <Award className="h-6 w-6 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">Earn Rewards</h3>
-                <p className="text-gray-600 text-sm">
-                  Unlock badges, streaks, and perks. Giving feels good—we make it feel great.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm bg-white">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
-                  <Handshake className="h-6 w-6 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">Give Together</h3>
-                <p className="text-gray-600 text-sm">
-                  Join team challenges with friends, family, or coworkers. Multiply your collective impact.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm bg-white">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-[#D4AF37]" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">Instant Tax Receipts</h3>
-                <p className="text-gray-600 text-sm">
-                  Automatic tax-compliant receipts. No paperwork, no waiting, no hassle.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Trusted by Donors, Nonprofits & Companies</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />)}
-                </div>
-                <p className="text-gray-600 mb-4 italic">
-                  "I never thought my $20 could matter. Through Altrue matching, I've funded 3 scholarships this year. It actually feels like I'm making a difference."
-                </p>
-                <div>
-                  <p className="font-semibold">Sarah M.</p>
-                  <p className="text-sm text-gray-500">Donor since 2023</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />)}
-                </div>
-                <p className="text-gray-600 mb-4 italic">
-                  "We went from $50K to $340K in our first year. Altrue's company matching partnerships did what 10 grant applications couldn't."
-                </p>
-                <div>
-                  <p className="font-semibold">James Chen</p>
-                  <p className="text-sm text-gray-500">Executive Director, Education Forward</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />)}
-                </div>
-                <p className="text-gray-600 mb-4 italic">
-                  "Employee engagement increased 40% after launching our CSR program. The automated matching saves us 20 hours a month."
-                </p>
-                <div>
-                  <p className="font-semibold">Lisa Rodriguez</p>
-                  <p className="text-sm text-gray-500">VP People, TechCorp</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Badges */}
-      <section className="py-12 border-y bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-8">
-            {trustBadges.map((badge) => (
-              <div key={badge.text} className="flex items-center gap-2 text-gray-600">
-                <badge.icon className="h-5 w-5 text-[#22C55E]" />
-                <span className="font-medium">{badge.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Preview */}
-      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-gray-600">No hidden fees. No surprises.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Donors */}
-            <Card className="border-2 border-[#D4AF37]/20">
-              <CardHeader>
-                <CardTitle>For Donors</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold mb-2">Free</div>
-                <p className="text-gray-600 text-sm mb-4">Always free to give</p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Free account
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Company matching
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Impact tracking
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Tax receipts
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Nonprofits */}
-            <Card className="border-2 border-[#2563EB]/20">
-              <CardHeader>
-                <CardTitle>For Nonprofits</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold mb-2">Free</div>
-                <p className="text-gray-600 text-sm mb-4">3% transaction fee only</p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Free profile page
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Unlimited projects
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Company partnerships
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Impact reporting
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Companies */}
-            <Card className="border-2 border-[#D97706]/20">
-              <CardHeader>
-                <CardTitle>For Companies</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold mb-2">$0-999<span className="text-lg font-normal">/mo</span></div>
-                <p className="text-gray-600 text-sm mb-4">Free tier available</p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Free tier available
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    Unlimited matching
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    ESG reporting
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
-                    API access (Pro+)
-                  </li>
-                </ul>
-                <Link href="/company">
-                  <Button variant="outline" className="w-full mt-4">View Details</Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-          </div>
-
-          <div className="space-y-6">
-            {[
-              {
-                q: "Is my donation tax-deductible?",
-                a: "Yes! Every nonprofit on Altrue is 501(c)(3) verified. You receive instant tax receipts for every donation."
-              },
-              {
-                q: "How does company matching work?",
-                a: "Companies set a match ratio (e.g., 1:1, 2:1). When you donate $10, Altrue automatically processes an additional $10-$100 from the company's fund. You don't do anything extra."
-              },
-              {
-                q: "What percentage reaches the nonprofit?",
-                a: "97% for individual donors (3% fee). Companies on Pro/Enterprise plans pay even lower fees (0.5-1%), meaning more impact per dollar."
-              },
-              {
-                q: "Is there a mobile app?",
-                a: "Yes! Available on iOS and Android. Donate, track impact, and manage your giving on the go."
-              },
-              {
-                q: "How long does nonprofit verification take?",
-                a: "Our team reviews applications within 24-48 hours to verify 501(c)(3) status. Once approved, you're live and ready to receive donations."
-              }
-            ].map((faq, i) => (
-              <div key={i} className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>
-                <p className="text-gray-600">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#D4AF37]">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Ready to Multiply Your Impact?</h2>
-          <p className="text-white/90 mb-8">
-            Join thousands of donors, nonprofits, and companies already making a difference on Altrue.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/register">
-              <Button size="lg" variant="secondary" className="gap-2">
-                Get Started Free <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/nonprofit/apply">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#D4AF37]">
-                Register Nonprofit
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 border-t bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Brand */}
+            <div className="md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <Heart className="h-6 w-6 text-[#D4AF37] fill-[#D4AF37]" />
-                <span className="font-bold text-xl">Altrue</span>
+                <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-[#D4AF37]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </div>
+                <span className="font-bold text-xl text-white">Altrue</span>
               </div>
-              <p className="text-gray-600 text-sm">
+              <p className="text-white/50 text-sm leading-relaxed">
                 The giving platform that multiplies your impact through company matching.
               </p>
             </div>
+
+            {/* Links */}
             <div>
-              <h4 className="font-semibold mb-4">For Donors</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link href="/register" className="hover:text-[#D4AF37]">Sign Up</Link></li>
-                <li><Link href="#features" className="hover:text-[#D4AF37]">How It Works</Link></li>
-                <li><Link href="#pricing" className="hover:text-[#D4AF37]">Pricing</Link></li>
+              <h4 className="text-white font-semibold mb-4">For Donors</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="/register" className="text-white/50 hover:text-[#D4AF37] transition-colors">Sign Up</a></li>
+                <li><a href="#how-it-works" className="text-white/50 hover:text-[#D4AF37] transition-colors">How It Works</a></li>
+                <li><a href="#stories" className="text-white/50 hover:text-[#D4AF37] transition-colors">Success Stories</a></li>
+                <li><a href="#rewards" className="text-white/50 hover:text-[#D4AF37] transition-colors">Rewards</a></li>
               </ul>
             </div>
+
             <div>
-              <h4 className="font-semibold mb-4">For Nonprofits</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link href="/nonprofit/apply" className="hover:text-[#D4AF37]">Apply</Link></li>
-                <li><Link href="/nonprofit" className="hover:text-[#D4AF37]">Learn More</Link></li>
-                <li><Link href="#" className="hover:text-[#D4AF37]">Resources</Link></li>
+              <h4 className="text-white font-semibold mb-4">For Nonprofits</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="/nonprofit/apply" className="text-white/50 hover:text-[#D4AF37] transition-colors">Apply</a></li>
+                <li><a href="/nonprofit" className="text-white/50 hover:text-[#D4AF37] transition-colors">Learn More</a></li>
+                <li><a href="/shop" className="text-white/50 hover:text-[#D4AF37] transition-colors">QR Apparel</a></li>
+                <li><a href="#" className="text-white/50 hover:text-[#D4AF37] transition-colors">Resources</a></li>
               </ul>
             </div>
+
             <div>
-              <h4 className="font-semibold mb-4">For Companies</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link href="/company" className="hover:text-[#D4AF37]">CSR Solutions</Link></li>
-                <li><Link href="/company/apply" className="hover:text-[#D4AF37]">Get Started</Link></li>
-                <li><Link href="#" className="hover:text-[#D4AF37]">Pricing</Link></li>
+              <h4 className="text-white font-semibold mb-4">For Companies</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="/company" className="text-white/50 hover:text-[#D4AF37] transition-colors">CSR Solutions</a></li>
+                <li><a href="/company/apply" className="text-white/50 hover:text-[#D4AF37] transition-colors">Get Started</a></li>
+                <li><a href="#" className="text-white/50 hover:text-[#D4AF37] transition-colors">Pricing</a></li>
+                <li><a href="#" className="text-white/50 hover:text-[#D4AF37] transition-colors">Enterprise</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t pt-8 text-center text-gray-600 text-sm">
-            <p>© 2024 Altrue Global. All rights reserved.</p>
+
+          {/* Bottom */}
+          <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-white/30 text-sm">
+              © {new Date().getFullYear()} Altrue Global. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6 text-sm">
+              <a href="#" className="text-white/30 hover:text-white/60 transition-colors">Privacy Policy</a>
+              <a href="#" className="text-white/30 hover:text-white/60 transition-colors">Terms of Service</a>
+              <a href="#" className="text-white/30 hover:text-white/60 transition-colors">Cookie Policy</a>
+            </div>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }

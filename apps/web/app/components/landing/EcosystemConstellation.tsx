@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 import { Gamepad2, Users, BookOpen, Shirt, Wallet, Trophy } from 'lucide-react';
 
 const ECOSYSTEM_NODES = [

@@ -59,3 +59,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  /* Selection color */
+  ::selection {
+    background-color: rgba(212, 175, 55, 0.3);
+    color: white;
+  }
+}
